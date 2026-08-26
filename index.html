@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рыба с Белого озера — копчёная, вяленая и замороженная рыба</title>
+    <style>
+        :root {
+            --blue: #3C8FD5;
+            --green: #4CAF50;
+            --brown: #8B4513;
+            --white: #FFFFFF;
+            --gray: #B0B0B0;
+            --dark-gray: #555555;
+            --sand: #F5E3C8;
+            --orange: #FFA500;
+            --dark-blue: #236A9E;
+            --dark-brown: #66320E;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 6%;
+            color: var(--white);
+            background: var(--blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        .logo { font-size: 22px; font-weight: bold; white-space: nowrap; }
+        nav { display: flex; gap: 24px; }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover { color: var(--orange); }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 90px 25px;
+            text-align: center;
+            color: var(--white);
+            background:
+                linear-gradient(rgba(35, 106, 158, 0.82), rgba(139, 69, 19, 0.72)),
+                url("images/white-lake.jpg") center/cover;
+            border-radius: 16px;
+        }
+        .hero h1 { margin: 0 0 16px; font-size: clamp(30px, 5vw, 52px); }
+        .hero p { max-width: 700px; margin: 0 auto 28px; font-size: 19px; }
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            color: var(--white);
+            background-color: var(--orange);
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover { background-color: var(--brown); transform: translateY(-2px); }
+
+        section { padding: 55px 0; }
+        h2 {
+            margin: 0 0 25px;
+            color: var(--brown);
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .product-card {
+            overflow: hidden;
+            text-align: center;
+            background-color: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15); }
+        .product-card img { display: block; width: 100%; height: 210px; object-fit: cover; }
+        .product-card-content { padding: 22px; }
+        .product-card h3 { margin-top: 0; color: var(--blue); font-size: 23px; }
+        .price { margin-top: 15px; color: var(--green); font-size: 20px; font-weight: bold; }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border: 4px solid var(--sand);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+
+        .advantages {
+            padding: 35px;
+            background-color: var(--sand);
+            border-radius: 14px;
+        }
+        .advantages-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+        .advantages-list li {
+            padding: 20px;
+            color: var(--dark-brown);
+            background-color: var(--white);
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .advantages-list li::before {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--green);
+            font-size: 28px;
+            content: "✓";
+        }
+
+        .contact-section {
+            padding: 35px;
+            background-color: var(--sand);
+            border-radius: 14px;
+        }
+        .contact-section h2 { text-align: left; }
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .contact-info p { margin: 10px 0; }
+        .contact-info a { color: var(--dark-blue); font-weight: bold; }
+
+        form { display: flex; flex-direction: column; gap: 12px; }
+        input, textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--gray);
+            border-radius: 6px;
+            font: inherit;
+            background-color: var(--white);
+        }
+        input:focus, textarea:focus { outline: 2px solid var(--blue); border-color: var(--blue); }
+        textarea { min-height: 120px; resize: vertical; }
+
+        button {
+            padding: 13px;
+            color: var(--white);
+            background-color: var(--green);
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover { background-color: var(--dark-brown); }
+
+        footer {
+            padding: 25px 20px;
+            color: var(--white);
+            text-align: center;
+            background-color: var(--brown);
+        }
+        footer p { margin: 0; }
+
+        @media (max-width: 800px) {
+            header { flex-direction: column; }
+            .products-grid, .advantages-list, .contact-info { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .contact-section h2 { text-align: center; }
+        }
+        @media (max-width: 500px) {
+            nav { flex-wrap: wrap; justify-content: center; gap: 12px; }
+            .hero { padding: 60px 18px; }
+            .gallery { grid-template-columns: 1fr; }
+            .gallery img { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">🐟 Рыба с Белого озера</div>
+        <nav>
+            <a href="#products">Продукция</a>
+            <a href="#advantages">Преимущества</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Рыба с Белого озера</h1>
+            <p>Копчёная, вяленая и замороженная рыба из Вологодской области</p>
+            <a class="btn" href="#contacts">Оформить заказ</a>
+        </section>
+
+        <section id="products">
+            <h2>Наша продукция</h2>
+            <div class="products-grid">
+                <article class="product-card">
+                    <img src="images/smoked-fish.jpg" alt="Копчёная рыба">
+                    <div class="product-card-content">
+                        <h3>Копчёная рыба</h3>
+                        <p>Рыба горячего и холодного копчения, приготовленная по традиционным рецептам.</p>
+                        <div class="price">от 800 ₽ за кг</div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="images/dried-fish.jpg" alt="Вяленая рыба">
+                    <div class="product-card-content">
+                        <h3>Вяленая рыба</h3>
+                        <p>Натуральная вяленая рыба с насыщенным вкусом и ароматом.</p>
+                        <div class="price">от 600 ₽ за кг</div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="images/frozen-fish.jpg" alt="Замороженная рыба">
+                    <div class="product-card-content">
+                        <h3>Замороженная рыба</h3>
+                        <p>Качественная замороженная рыба для домашнего приготовления.</p>
+                        <div class="price">от 500 ₽ за кг</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="advantages" class="advantages">
+            <h2>Почему выбирают нас</h2>
+            <ul class="advantages-list">
+                <li>Рыба из чистых вод Белого озера</li>
+                <li>Натуральное копчение и вяление</li>
+                <li>Свежая продукция и удобная доставка</li>
+            </ul>
+        </section>
+
+        <section id="gallery">
+            <h2>Галерея</h2>
+            <div class="gallery">
+                <img src="images/white-lake.jpg" alt="Белое озеро">
+                <img src="images/smoked-fish.jpg" alt="Копчёная рыба">
+                <img src="images/dried-fish.jpg" alt="Вяленая рыба">
+                <img src="images/frozen-fish.jpg" alt="Замороженная рыба">
+            </div>
+        </section>
+
+        <section id="contacts" class="contact-section">
+            <h2>Контакты и заказ</h2>
+            <div class="contact-info">
+                <div>
+                    <p>Закажите рыбу с Белого озера по телефону или оставьте заявку через форму.</p>
+                    <p><strong>Телефон:</strong> <a href="tel:+79291253435">+7 (929)125-34-35</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@rybabelogo.ru">info@rybabelogo.ru</a></p>
+                    <p><strong>Регион:</strong> Вологодская область</p>
+                </div>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                    <textarea name="message" placeholder="Что вы хотите заказать?" required></textarea>
+                    <button type="submit">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 «Рыба с Белого озера». Копчёная, вяленая и замороженная рыба.</p>
+    </footer>
+</body>
+</html>
+    
